@@ -1,0 +1,67 @@
+.coursesLayout-section .course-container {
+  width: 100%;
+  height: 100%;
+}
+
+.coursesLayout-section .course-headline {
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 2.4rem;
+
+  /* Gradients/Deep-ocean */
+  background: linear-gradient(270deg, #28b3f7 0.65%, #506aff 99.35%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.course-container a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.course-box {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  padding: 1.2rem 1.2rem;
+  height: 100%;
+}
+
+.coursesLayout-section .course-description {
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 140%;
+  color: #253658;
+  width: 70%;
+}
+
+.summary {
+  display: grid;
+  grid-template-columns: 15rem 15rem;
+  align-content: center;
+  row-gap: 0.8rem;
+}
+
+.bullet-point {
+  list-style: none;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 140%;
+  color: #253658;
+}
+
+.bullet-point::before {
+  content: "\2022";
+  font-weight: bold;
+  display: inline-block;
+  width: 1rem;
+  font-size: 16px;
+
+  background: linear-gradient(270deg, #28b3f7 0.65%, #506aff 99.35%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}

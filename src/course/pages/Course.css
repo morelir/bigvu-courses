@@ -1,0 +1,15 @@
+.course-section {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.course-section .course-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap:3.2rem;
+}
+
+
+
