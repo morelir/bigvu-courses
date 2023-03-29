@@ -4,6 +4,7 @@ import { createApiClient } from "../../core/api";
 import CoureseContext from "../../shared/store/course-context";
 import CourseDetails from "../components/course/CourseDetails";
 import CourseVideo from "../components/course/CourseVideo";
+import MoonLoader from "react-spinners/MoonLoader";
 import "./Course.css";
 
 const api = createApiClient();
@@ -14,8 +15,9 @@ const Course = () => {
   const [course, setCourse] = useState();
   const [chapter, setChapter] = useState();
   const [timestamp, setTimeStamp] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
 
-  const {getChapterId,getTimeStamp} = courseCtx;
+  const { getChapterId, getTimeStamp } = courseCtx;
 
   useEffect(() => {
     (async () => {
@@ -26,27 +28,33 @@ const Course = () => {
       if (getChapterId(courseId)) {
         chapterId = getChapterId(courseId);
         chapter = result.chapters.find((chapter) => chapter.id === chapterId);
-        console.log(getTimeStamp(courseId,chapterId,chapter.asset.resource.duration))
-        setTimeStamp(getTimeStamp(courseId,chapterId,chapter.asset.resource.duration))
+        setTimeStamp(
+          getTimeStamp(courseId, chapterId, chapter.asset.resource.duration)
+        );
       } else {
         chapter = result.chapters[0];
       }
 
       setChapter(chapter);
       console.log(chapter);
+      setIsLoading(false);
     })();
-  }, [courseId,getChapterId,getTimeStamp]);
+  }, [courseId, getChapterId, getTimeStamp]);
 
-  const clickVideoChapterHanlder = () => {};
+  const clickVideoChapterHanlder = (chapterId) => {
+    const chapter = course.chapters.find((chapter) => chapter.id === chapterId);
+    setChapter(chapter);
+    setTimeStamp(0);
+  };
 
   const savePlayingTimePosition = (chapterId, timeLeft) => {
     courseCtx.savePlayingTimePosition(courseId, chapterId, timeLeft);
   };
 
-  if (!course) {
+  if (isLoading) {
     return (
-      <div>
-        <h1>No courses found</h1>
+      <div className="center">
+        <MoonLoader color="#36d7b7" />
       </div>
     );
   }
@@ -55,7 +63,6 @@ const Course = () => {
     <div className="course-section">
       <div className="course-container">
         <CourseVideo
-          onClickVideoChapter={clickVideoChapterHanlder}
           url={chapter.asset.resource.stream.url}
           title={chapter.asset.title}
           duration={chapter.asset.resource.duration}
@@ -65,7 +72,10 @@ const Course = () => {
             course.chapters[0].id
           )}
         />
-        <CourseDetails course={course} />
+        <CourseDetails
+          onClickVideoChapter={clickVideoChapterHanlder}
+          course={course}
+        />
       </div>
     </div>
   );

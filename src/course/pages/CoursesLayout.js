@@ -5,20 +5,25 @@ import MoonLoader from "react-spinners/MoonLoader";
 
 const api = createApiClient();
 
-
 const CoursesLayout = () => {
   const [courses, setCourses] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     (async () => {
       const result = await api.getCourseList();
       setCourses(result.result);
       console.log(result.result);
+      setIsLoading(false);
     })();
   }, []);
 
-  if (courses.length !== 0) {
-    return <MoonLoader className="center" color="#36d7b7" />
+  if (isLoading) {
+    return (
+      <div className="center">
+        <MoonLoader color="#36d7b7" />
+      </div>
+    );
   }
 
   return (
