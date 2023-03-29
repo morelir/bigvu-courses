@@ -1,7 +1,7 @@
 .course-details {
   display: flex;
   flex-direction: column;
-  gap: 1.8rem;
+  gap: 1.2rem;
   width: 100%;
 }
 
@@ -19,7 +19,7 @@
 
   border: 1px solid rgba(123, 141, 177, 0.6);
   border-radius: 10px;
-  padding:0.8rem 0;
+  padding: 0.8rem 0;
 }
 
 .chapter-list {
@@ -39,20 +39,19 @@
   display: flex;
   align-items: start;
   gap: 1.2rem;
-
+  cursor: pointer;
 }
 
 .chapter-item:hover,
-.chapter-item:active {
+.chapter-item:active,
+.chapter-item.active {
   /* BlueBlack/100 */
   color: #253658;
   background: rgba(0, 171, 254, 0.08);
-
- 
 }
 
-
-.chapter-item:hover .circle {
+.chapter-item:hover .circle,
+.chapter-item.active .circle {
   border-color: #253658;
 }
 
@@ -60,11 +59,13 @@
   stroke: #aaa;
 }
 
-.chapter-item:hover svg {
+.chapter-item:hover svg,
+.chapter-item:active svg,
+.chapter-item.active svg{
   stroke: #253658;
 }
 
-.chapter-item .duration{
-    font-weight: 400;
-    margin-left:auto;
+.chapter-item .duration {
+  font-weight: 400;
+  margin-left: auto;
 }

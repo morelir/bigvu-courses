@@ -3,8 +3,9 @@ import CirclePlayIcon from "../../../shared/components/ui/CirclePlayIcon";
 import "./CourseDetails.css";
 
 const CourseDetails = ({
-  course: { headline, chapters },
   onClickVideoChapter,
+  course: { headline, chapters },
+  chapterId,
 }) => {
   return (
     <div className="course-details">
@@ -23,7 +24,9 @@ const CourseDetails = ({
                 onClick={() => {
                   onClickVideoChapter(chapter.id);
                 }}
-                className="chapter-item"
+                className={`chapter-item ${
+                  chapterId === chapter.id ? "active" : ""
+                }`}
               >
                 <CirclePlayIcon />
                 <p>{chapter.title}</p>

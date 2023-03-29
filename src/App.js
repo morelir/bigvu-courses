@@ -2,7 +2,7 @@ import CoursesLayout from "./course/pages/CoursesLayout";
 import { Routes, Route, Navigate } from "react-router-dom";
 import "./App.css";
 import Course from "./course/pages/Course";
-import { CoureseContextProvider } from "./shared/store/course-context";
+import { CourseContextProvider } from "./shared/store/course-context";
 
 function App() {
   return (
@@ -12,9 +12,9 @@ function App() {
         <Route
           path="/:id"
           element={
-            <CoureseContextProvider>
+            <CourseContextProvider>
               <Course />
-            </CoureseContextProvider>
+            </CourseContextProvider>
           }
         />
         <Route path="*" element={<Navigate to="/" replace />} />

@@ -1,10 +1,10 @@
 import React, { useState, useEffect, useCallback } from "react";
 
-const CoureseContext = React.createContext({
+const CourseContext = React.createContext({
   playingPosition: {},
   savePlayingTimePosition: (courseId, chapterId, timeLeft) => {},
   getChapterId: (courseId) => {},
-  getTimeStamp:(courseId,chapterId)=>{}
+  getTimeStamp: (courseId, chapterId) => {},
 });
 
 // const p = {
@@ -22,11 +22,9 @@ const retrieveStoredPlayingData = () => {
   return playingData;
 };
 
-export const CoureseContextProvider = (props) => {
-
+export const CourseContextProvider = (props) => {
   const playingData = retrieveStoredPlayingData();
-  console.log(playingData)
-  let initialPlayingData={};
+  let initialPlayingData = {};
   if (playingData) {
     initialPlayingData = JSON.parse(playingData);
   }
@@ -35,47 +33,47 @@ export const CoureseContextProvider = (props) => {
   // useEffect(() => {}, []);
 
   const savePlayingTimePosition = (courseId, chapterId, timeLeft) => {
+    console.log(playingPosition);
     const newPlayingPosition = {
       ...playingPosition,
       [courseId]: { [chapterId]: timeLeft },
     };
+    console.log(newPlayingPosition);
 
     localStorage.removeItem("playingPosition");
     localStorage.setItem("playingPosition", JSON.stringify(newPlayingPosition));
 
-    setPlayingPosition({
-      newPlayingPosition,
-    });
+    setPlayingPosition(newPlayingPosition);
   };
 
-  const getChapterId = useCallback((courseId) => {
-    if(playingPosition && playingPosition[courseId]){
-      return Object.keys(playingPosition[courseId])[0]
+  const getChapterId = (courseId) => {
+    console.log(1);
+    if (playingPosition && playingPosition[courseId]) {
+      return Object.keys(playingPosition[courseId])[0];
     }
     return false;
-  },[]) 
+  };
 
-  const getTimeStamp = useCallback((courseId,chapterId,duration) => {
-    if(playingPosition[courseId]?.[chapterId]>=0 ){
-      return duration-playingPosition[courseId][chapterId];
+  const getTimeStamp =(courseId, chapterId, duration) => {
+    console.log(2);
+    if (playingPosition[courseId]?.[chapterId] >= 0) {
+      return duration - playingPosition[courseId][chapterId];
     }
     return false;
-  },[]) 
-
-
+  };
 
   const contextValue = {
     playingPosition,
     savePlayingTimePosition,
     getChapterId,
-    getTimeStamp
+    getTimeStamp,
   };
 
   return (
-    <CoureseContext.Provider value={contextValue}>
+    <CourseContext.Provider value={contextValue}>
       {props.children}
-    </CoureseContext.Provider>
+    </CourseContext.Provider>
   );
 };
 
-export default CoureseContext;
+export default CourseContext;
