@@ -1,6 +1,7 @@
 import React from "react";
 import CheckedIcon from "../../../shared/components/ui/CheckedIcon";
 import CirclePlayIcon from "../../../shared/components/ui/CirclePlayIcon";
+import CompleteChapters from "./CompleteChapters";
 import "./CourseDetails.css";
 
 const CourseDetails = ({
@@ -13,9 +14,7 @@ const CourseDetails = ({
     <div className="course-details">
       <div className="course-headline-container">
         <h1 className="course-headline">{headline}</h1>
-        <div className="complete-chapters">
-          <span>0/{chapters.length}</span>
-        </div>
+        <CompleteChapters finished={Object.keys(finishedChapters).length} total={chapters.length} />
       </div>
       <div className="chapters-box">
         <ul className="chapter-list">
@@ -48,7 +47,9 @@ const CourseDetails = ({
                 <p className="chapter-title">{chapter.title}</p>
 
                 <span className="duration">
-                  {Math.round(chapter.asset.resource.duration)}
+                  {new Date(chapter.asset.resource.duration.toFixed(2) * 1000)
+                    .toISOString()
+                    .slice(15, 19)}
                 </span>
               </li>
             );

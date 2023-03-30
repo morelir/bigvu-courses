@@ -74,7 +74,7 @@ const Course = () => {
   if (isLoading) {
     return (
       <div className="center">
-        <MoonLoader color="#36d7b7" />
+        <MoonLoader color="#253658" />
       </div>
     );
   }

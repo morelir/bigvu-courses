@@ -3,7 +3,6 @@
   flex-direction: column;
   gap: 1.2rem;
   width: 100%;
-  
 }
 
 .course-headline-container {
@@ -13,11 +12,6 @@
 }
 
 .chapters-box {
-  /* width: 328px;
-  height: 260px;
-  left: 17px;
-  top: 311px; */
-
   border: 1px solid rgba(123, 141, 177, 0.6);
   border-radius: 10px;
   padding: 0.8rem 0;
@@ -34,39 +28,40 @@
   font-weight: 500;
   font-size: 1.4rem;
   line-height: 140%;
-  color: #aaa;
+  color: #253658;
+  opacity: 0.5;
   padding: 0.8rem 1.6rem;
 
-  /* display: flex;
-  align-items: start;
-  gap: 1.2rem; */
   display: grid;
   grid-template-columns: 20px auto 1fr;
   column-gap: 1.2rem;
   cursor: pointer;
+  transition: all 0.2s;
 }
 
 .chapter-item:hover,
 .chapter-item:active,
 .chapter-item.active {
   /* BlueBlack/100 */
-  color: #253658;
+  opacity: 1;
   background: rgba(0, 171, 254, 0.08);
 }
 
-.chapter-item:hover .circle,
-.chapter-item.active .circle {
+.chapter-item .circle {
   border-color: #253658;
+  position: relative;
 }
 
-.chapter-item svg {
-  stroke: #aaa;
-}
-
-.chapter-item:hover svg,
-.chapter-item:active svg,
-.chapter-item.active svg {
+.chapter-item .circle svg {
   stroke: #253658;
+  position: absolute;
+  top: 50%;
+  left: 54%;
+  transform: translate(-50%, -50%);
+}
+
+.chapter-item .checked svg {
+  stroke: #00d096;
 }
 
 .chapter-title {

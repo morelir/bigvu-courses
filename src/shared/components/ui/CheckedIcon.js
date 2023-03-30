@@ -3,7 +3,7 @@ import "./CheckedIcon.css"
 
 const CheckedIcon = ({ className }) => {
   return (
-    <div className={`checked-icon ${className}`}>
+    <div className={`checked ${className}`}>
       <svg
         width="18"
         height="13"

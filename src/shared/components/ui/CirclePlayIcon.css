@@ -1,7 +1,7 @@
 .circle {
   width: 20px;
   height: 20px;
-  border: 1px solid #aaa;
+  border: 1.5px solid #aaa;
   border-radius: 50%;
 
   display: flex;

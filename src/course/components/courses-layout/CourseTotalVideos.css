@@ -1,0 +1,26 @@
+.course-total-videos {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+  background: rgba(37, 54, 88, 0.6);
+  border-radius: 4px;
+  width: 9.65rem;
+  padding: 0.4rem 0;
+}
+
+.course-total-videos p {
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 17px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.course-total-videos svg {
+  width: 1.8rem;
+  height: 1.8rem;
+  fill: #fff;
+}

@@ -3,16 +3,11 @@
   height: 100%;
 }
 
-.coursesLayout-section .course-headline {
+.coursesLayout-section .course-container .course-headline {
   font-weight: 700;
   font-size: 2rem;
   line-height: 2.4rem;
-
-  /* Gradients/Deep-ocean */
-  background: linear-gradient(270deg, #28b3f7 0.65%, #506aff 99.35%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  margin-bottom: 1.2rem;
 }
 
 .course-container a {
@@ -24,18 +19,20 @@
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
-  border: 1px solid #ccc;
+  border: 1.5px solid rgba(37, 54, 88, 0.31);
   border-radius: 12px;
-  padding: 1.2rem 1.2rem;
-  height: 100%;
+  padding: 1.6rem 1.2rem;
+  position: relative;
+  overflow: hidden;
+  height: 21rem;
 }
 
 .coursesLayout-section .course-description {
   font-weight: 700;
-  font-size: 16px;
+  font-size: 1.6rem;
   line-height: 140%;
   color: #253658;
-  width: 70%;
+  width: 54%;
 }
 
 .summary {
@@ -48,7 +45,7 @@
 .bullet-point {
   list-style: none;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 1.2rem;
   line-height: 140%;
   color: #253658;
 }
@@ -59,8 +56,44 @@
   display: inline-block;
   width: 1rem;
   font-size: 16px;
+}
 
+.circle-chevron-right {
+  position: absolute;
+  bottom: 23%;
+  right: 5%;
+  border-radius: 50%;
+  background-color: #253658;
+  transition: all 0.3s;
+}
+
+.circle-chevron-right:hover {
+  opacity: 0.5;
+}
+
+.draw{
+  position: absolute;
+  top:0%;
+  right:0%;
+  width: 18rem;
+}
+
+.deep-ocean {
   background: linear-gradient(270deg, #28b3f7 0.65%, #506aff 99.35%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.green-field {
+  background: linear-gradient(90deg, #00ea3b 0%, #00d096 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.sunset {
+  background: linear-gradient(270deg, #f79f28 0.65%, #ff5350 99.35%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;

@@ -8,8 +8,34 @@
   width: 100%;
   display: flex;
   justify-content: space-between;
-  gap:3.2rem;
+  gap: 3.2rem;
 }
 
+/****************************/
+/* BELOW 1420px
+/****************************/
+@media (max-width: 89em) {
 
+  
+  .course-section {
+    max-width: 72.8rem;
+    margin: 4.8rem auto;
+    align-items: start;
+  }
 
+  .course-section .course-container {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    /* display: block; */
+  }
+
+  .course-video {
+
+    height: auto;
+  }
+
+  .complete-chapters{
+    
+  }
+}

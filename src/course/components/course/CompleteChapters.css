@@ -1,0 +1,22 @@
+.course-details .complete-chapters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.8rem;
+  background: rgba(0, 171, 254, 0.08);
+  border-radius: 40px;
+  width: 6.6rem;
+  height: 3.2rem;
+}
+
+.course-details .complete-chapters span {
+  font-weight: 500;
+  font-size: 1.4rem;
+  line-height: 140%;
+  color: #253658;
+}
+
+.course-details .complete-chapters svg {
+  width: 1.4rem;
+  height: 2rem;
+}

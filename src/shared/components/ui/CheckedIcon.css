@@ -1,13 +1,13 @@
-.checked-icon {
-  width: 20px;
-  height: 20px;
+.checked {
+  width: 2rem;
+  height: 2rem;
   align-self: stretch;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.checked-icon svg {
-  width: 16px;
-  height: 11px;
+.checked svg {
+  width: 1.6rem;
+  height: 1.1rem;
 }

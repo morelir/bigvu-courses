@@ -1,0 +1,63 @@
+.coursesLayout-section {
+  max-width: 144rem;
+  margin: 4.8rem auto;
+}
+
+.coursesLayout-heading {
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 2.4rem;
+  color: #253658;
+  margin-bottom: 1.2rem;
+}
+
+.coursesLayout-description {
+  font-weight: 400;
+  font-size: 1.4rem;
+  line-height: 140%;
+  color: #253658;
+  margin-bottom: 3.2rem;
+}
+
+/****************************/
+/* BELOW 1800px 
+/****************************/
+@media (max-width: 112em) {
+  .course-list {
+    width: auto;
+  }
+}
+
+/****************************/
+/* BELOW 1280px (smaller desktop) */
+/****************************/
+@media (max-width: 80em) {
+  .coursesLayout-section{
+    max-width:56.4rem;
+  }
+
+  .course-list {
+    flex-direction: column;
+  }
+  .circle-chevron-right{
+    display: none;
+  }
+
+  .course-box{
+    height: auto;
+  }
+
+}
+
+/****************************/
+/* BELOW 485px  */
+/****************************/
+
+@media (max-width: 30em) {
+  html {
+    /* 8px / 16px = 0.5 = 50% */
+    font-size: 50%;
+  }
+
+}
+
