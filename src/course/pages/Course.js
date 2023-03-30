@@ -15,14 +15,15 @@ const Course = () => {
   const [course, setCourse] = useState({});
   const [chapter, setChapter] = useState({});
   const [timestamp, setTimestamp] = useState(0);
+  const [finishedChapters,setFinishedChapters] = useState({})
   const [isLoading, setIsLoading] = useState(true);
 
-  const { getChapterId, getTimeStamp} = courseCtx;
+  const { getChapterId, getTimestamp,coursesFinishedChapters} = courseCtx;
 
   useEffect(() => {
     (async () => {
-      console.log(111)
-      setIsLoading(true)
+      console.log(111);
+      setIsLoading(true);
       const result = await api.getCourse(courseId);
       setCourse(result);
       let chapter;
@@ -30,7 +31,7 @@ const Course = () => {
         let chapterId = getChapterId(courseId);
         chapter = result.chapters.find((chapter) => chapter.id === chapterId);
         setTimestamp(
-          getTimeStamp(courseId, chapterId, chapter.asset.resource.duration)
+          getTimestamp(courseId, chapterId, chapter.asset.resource.duration)
         );
       } else {
         chapter = result.chapters[0];
@@ -41,6 +42,11 @@ const Course = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [courseId]);
 
+  useEffect(()=>{
+    setFinishedChapters(coursesFinishedChapters[courseId] ?? {})
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[coursesFinishedChapters[courseId],courseId])
+
   const clickVideoChapterHanlder = (chapterId) => {
     const chapter = course.chapters.find((chapter) => chapter.id === chapterId);
     console.log(chapter);
@@ -50,6 +56,19 @@ const Course = () => {
 
   const savePlayingTimePosition = (chapterId, timeLeft) => {
     courseCtx.savePlayingTimePosition(courseId, chapterId, timeLeft);
+  };
+
+  const saveFinishedChapters = (chapterId) => {
+    courseCtx.saveFinishedChapters(courseId, chapterId);
+  };
+
+  const nextVideoChapter = (chapterId) => {
+    const index = course.chapters.findIndex(
+      (chapter) => chapter.id === chapterId
+    );
+    if (index === course.chapters.length - 1 || index === -1) return;
+    setChapter(course.chapters[index + 1]);
+    setTimestamp(0);
   };
 
   if (isLoading) {
@@ -64,19 +83,24 @@ const Course = () => {
     <div className="course-section">
       <div className="course-container">
         <CourseVideo
+          chapterId={chapter.id}
           url={chapter.asset.resource.stream.url}
           title={chapter.title}
           duration={chapter.asset.resource.duration}
           timestamp={timestamp}
+          finishedChapters={finishedChapters}
           savePlayingTimePosition={savePlayingTimePosition.bind(
             null,
             chapter.id
           )}
+          nextVideoChapter={nextVideoChapter.bind(null, chapter.id)}
+          saveFinishedChapters={saveFinishedChapters.bind(null, chapter.id)}
         />
         <CourseDetails
           onClickVideoChapter={clickVideoChapterHanlder}
           course={course}
           chapterId={chapter.id}
+          finishedChapters={finishedChapters}
         />
       </div>
     </div>

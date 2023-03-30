@@ -80,3 +80,15 @@ hr {
   transform: translate(-50%,-50%);
   
 }
+
+.display{
+  display: block !important;
+}
+
+.display-flex{
+  display: flex !important;
+}
+
+.display-none{
+  display: none !important;
+}

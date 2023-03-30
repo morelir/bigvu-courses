@@ -4,7 +4,10 @@ const CourseContext = React.createContext({
   playingPosition: {},
   savePlayingTimePosition: (courseId, chapterId, timeLeft) => {},
   getChapterId: (courseId) => {},
-  getTimeStamp: (courseId, chapterId) => {},
+  getTimestamp: (courseId, chapterId) => {},
+  finishedChapters:{},
+  saveFinishedChapters: (courseId, chapterId) => {},
+  getFinishedChapters: (courseId) => {},
 });
 
 // const p = {
@@ -16,21 +19,37 @@ const CourseContext = React.createContext({
 //   },
 // };
 
-const retrieveStoredPlayingData = () => {
-  const playingData = localStorage.getItem("playingPosition");
+// const finishedChapter = {
+//   123:{
+//        23:true,
+//        12:true
+//   },
+//   124: {
+//        23:true,
+//        12:true
+//   },
+// };
 
-  return playingData;
+const retrieveStoredPlayingPosition = () => {
+  const playingData = localStorage.getItem("playingPosition");
+  if (playingData) return JSON.parse(playingData);
+  else return {};
+};
+
+const retrieveStoredCoursesFinishedChapters = () => {
+  const coursesFinishedChapters = localStorage.getItem("coursesFinishedChapters");
+  if (coursesFinishedChapters) return JSON.parse(coursesFinishedChapters);
+  else return {};
 };
 
 export const CourseContextProvider = (props) => {
-  const playingData = retrieveStoredPlayingData();
-  let initialPlayingData = {};
-  if (playingData) {
-    initialPlayingData = JSON.parse(playingData);
-  }
-  const [playingPosition, setPlayingPosition] = useState(initialPlayingData);
+  const [playingPosition, setPlayingPosition] = useState(
+    retrieveStoredPlayingPosition()
+  );
 
-  // useEffect(() => {}, []);
+  const [coursesFinishedChapters, setCoursesFinishedChapters] = useState(
+    retrieveStoredCoursesFinishedChapters()
+  );
 
   const savePlayingTimePosition = (courseId, chapterId, timeLeft) => {
     console.log(playingPosition);
@@ -54,7 +73,7 @@ export const CourseContextProvider = (props) => {
     return false;
   };
 
-  const getTimeStamp =(courseId, chapterId, duration) => {
+  const getTimestamp = (courseId, chapterId, duration) => {
     console.log(2);
     if (playingPosition[courseId]?.[chapterId] >= 0) {
       return duration - playingPosition[courseId][chapterId];
@@ -62,11 +81,32 @@ export const CourseContextProvider = (props) => {
     return false;
   };
 
+  const saveFinishedChapters = (courseId, chapterId) => {
+    console.log(coursesFinishedChapters);
+    const newCoursesFinishedChapters = {
+      ...coursesFinishedChapters,
+      [courseId]: { ...coursesFinishedChapters[courseId], [chapterId]: true },
+    };
+    console.log(newCoursesFinishedChapters);
+
+    localStorage.removeItem("coursesFinishedChapters");
+    localStorage.setItem(
+      "coursesFinishedChapters",
+      JSON.stringify(newCoursesFinishedChapters)
+    );
+
+    setCoursesFinishedChapters(newCoursesFinishedChapters);
+  };
+
+
+
   const contextValue = {
     playingPosition,
     savePlayingTimePosition,
     getChapterId,
-    getTimeStamp,
+    getTimestamp,
+    coursesFinishedChapters,
+    saveFinishedChapters,
   };
 
   return (

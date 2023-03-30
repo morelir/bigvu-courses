@@ -3,6 +3,7 @@
   flex-direction: column;
   gap: 1.2rem;
   width: 100%;
+  
 }
 
 .course-headline-container {
@@ -36,9 +37,12 @@
   color: #aaa;
   padding: 0.8rem 1.6rem;
 
-  display: flex;
+  /* display: flex;
   align-items: start;
-  gap: 1.2rem;
+  gap: 1.2rem; */
+  display: grid;
+  grid-template-columns: 20px auto 1fr;
+  column-gap: 1.2rem;
   cursor: pointer;
 }
 
@@ -61,8 +65,13 @@
 
 .chapter-item:hover svg,
 .chapter-item:active svg,
-.chapter-item.active svg{
+.chapter-item.active svg {
   stroke: #253658;
+}
+
+.chapter-title {
+  overflow: hidden;
+  height: 2rem;
 }
 
 .chapter-item .duration {

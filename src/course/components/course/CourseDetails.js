@@ -1,4 +1,5 @@
 import React from "react";
+import CheckedIcon from "../../../shared/components/ui/CheckedIcon";
 import CirclePlayIcon from "../../../shared/components/ui/CirclePlayIcon";
 import "./CourseDetails.css";
 
@@ -6,6 +7,7 @@ const CourseDetails = ({
   onClickVideoChapter,
   course: { headline, chapters },
   chapterId,
+  finishedChapters,
 }) => {
   return (
     <div className="course-details">
@@ -26,10 +28,24 @@ const CourseDetails = ({
                 }}
                 className={`chapter-item ${
                   chapterId === chapter.id ? "active" : ""
-                }`}
+                } ${finishedChapters[chapter.id] ? "finished" : ""}`}
               >
-                <CirclePlayIcon />
-                <p>{chapter.title}</p>
+                <CheckedIcon
+                  className={`${
+                    finishedChapters[chapter.id]
+                      ? "display-flex"
+                      : "display-none"
+                  }`}
+                />
+                <CirclePlayIcon
+                  className={`${
+                    !finishedChapters[chapter.id]
+                      ? "display-flex"
+                      : "display-none"
+                  }`}
+                />
+
+                <p className="chapter-title">{chapter.title}</p>
 
                 <span className="duration">
                   {Math.round(chapter.asset.resource.duration)}
