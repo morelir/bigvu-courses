@@ -4,6 +4,7 @@ import { createApiClient } from "../../../core/api";
 import CircleChevronRight from "../../../shared/components/ui/CircleChevronRight";
 import "./CourseItem.css";
 import CourseTotalVideos from "./CourseTotalVideos";
+import FinishedCourse from "./FinishedCourse";
 
 const CourseItem = ({
   course: { id, headline, description, summary },
@@ -31,6 +32,7 @@ const CourseItem = ({
             src={require(`../../../shared/images/${style}-draw.png`)}
             alt={`${style}-draw`}
           ></img>
+          <FinishedCourse courseId={id} style={style}/>
         </div>
       </Link>
     </li>

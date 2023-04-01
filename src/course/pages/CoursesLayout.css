@@ -32,21 +32,26 @@
 /* BELOW 1280px (smaller desktop) */
 /****************************/
 @media (max-width: 80em) {
-  .coursesLayout-section{
-    max-width:56.4rem;
+  .coursesLayout-section {
+    max-width: 56.4rem;
   }
 
   .course-list {
     flex-direction: column;
   }
-  .circle-chevron-right{
+  .circle-chevron-right {
     display: none;
   }
 
-  .course-box{
+  .course-box {
     height: auto;
   }
 
+  .coursesLayout-section .finished-course {
+    top: 14%;
+    right: -8%;
+    padding: 0.6rem 5rem;
+  }
 }
 
 /****************************/
@@ -59,5 +64,8 @@
     font-size: 50%;
   }
 
+  .coursesLayout-section .finished-course {
+    top: 16%;
+    right: -12%;
+  }
 }
-

@@ -71,10 +71,10 @@
   opacity: 0.5;
 }
 
-.draw{
+.draw {
   position: absolute;
-  top:0%;
-  right:0%;
+  top: 0%;
+  right: 0%;
   width: 18rem;
 }
 
@@ -97,4 +97,16 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
+}
+
+.deep-ocean-background {
+  background: linear-gradient(270deg, #28b3f7 0.65%, #506aff 99.35%);
+}
+
+.green-field-background {
+  background: linear-gradient(90deg, #00ea3b 0%, #00d096 100%);
+}
+
+.sunset-background {
+  background: linear-gradient(270deg, #f79f28 0.65%, #ff5350 99.35%);
 }

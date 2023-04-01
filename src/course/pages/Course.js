@@ -99,6 +99,7 @@ const Course = () => {
         <CourseDetails
           onClickVideoChapter={clickVideoChapterHanlder}
           course={course}
+          courseId={courseId}
           chapterId={chapter.id}
           finishedChapters={finishedChapters}
         />

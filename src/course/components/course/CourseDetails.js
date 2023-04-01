@@ -7,14 +7,16 @@ import "./CourseDetails.css";
 const CourseDetails = ({
   onClickVideoChapter,
   course: { headline, chapters },
+  courseId,
   chapterId,
   finishedChapters,
 }) => {
+
   return (
     <div className="course-details">
       <div className="course-headline-container">
         <h1 className="course-headline">{headline}</h1>
-        <CompleteChapters finished={Object.keys(finishedChapters).length} total={chapters.length} />
+        <CompleteChapters courseId={courseId} finished={Object.keys(finishedChapters).length} total={chapters.length} />
       </div>
       <div className="chapters-box">
         <ul className="chapter-list">

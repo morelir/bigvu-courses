@@ -4,13 +4,16 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 import { BrowserRouter as Router } from "react-router-dom";
+import { CourseContextProvider } from "./shared/store/course-context";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // <React.StrictMode>
+  <CourseContextProvider>
     <Router>
       <App />
     </Router>
+  </CourseContextProvider>
   // </React.StrictMode>
 );
 
