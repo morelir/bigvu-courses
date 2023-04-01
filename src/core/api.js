@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const auth = {
-  username: "bigvu",
-  password: "interview",
+  username: process.env.USERNAME,
+  password: process.env.PASSWORD,
 };
 
 export const createApiClient = () => {
