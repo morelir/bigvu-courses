@@ -12,9 +12,14 @@ const CoursesLayout = () => {
 
   useEffect(() => {
     (async () => {
+      try{
       const result = await api.getCourseList();
+      console.log(result.result)
       setCourses(result.result);
       setIsLoading(false);
+      }catch(err){
+        console.log(err)
+      }
     })();
   }, []);
 
