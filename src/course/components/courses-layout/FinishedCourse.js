@@ -9,7 +9,7 @@ const FinishedCourse = ({ courseId ,style}) => {
   const [finishedCourse] = useState(coursesCtx.finishedCourses[courseId] ?? false);
 
   if (finishedCourse) {
-    return <span className={`finished-course ${style}-background`}>Complete</span>;
+    return <span className={`finished-course ${style}-background`}>Completed</span>;
   }
 
   return <></>;
