@@ -26,7 +26,7 @@ const CourseItem = ({
               );
             })}
           </ul>
-          <CircleChevronRight />
+          <CircleChevronRight /> 
           <img
             className="draw"
             src={require(`../../../shared/images/${style}-draw.png`)}

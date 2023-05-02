@@ -32,7 +32,6 @@ const CourseVideo = ({
     return () => {
       if (videoRefValue) {
         const timeLeft = duration - videoRefValue.currentTime;
-        console.log(timeLeft, duration, videoRefValue.currentTime);
         savePlayingTimePosition(timeLeft);
       }
       window.removeEventListener("beforeunload", onBeforeUnload);
@@ -50,7 +49,6 @@ const CourseVideo = ({
     if (currentTime >= 10 && !finishedChapters[chapterId]) {
       // execute after 10 seconds
       saveFinishedChapters();
-      console.log("finished");
     }
   };
 

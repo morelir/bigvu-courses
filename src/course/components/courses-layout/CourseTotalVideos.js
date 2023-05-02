@@ -18,10 +18,6 @@ const CourseTotalVideos = ({ id }) => {
     })();
   });
 
-  // if (isLoading) {
-  //   return <BarLoader color="#253658" />;
-  // }
-
   return (
     <div className="course-total-videos">
       <VideoIcon />

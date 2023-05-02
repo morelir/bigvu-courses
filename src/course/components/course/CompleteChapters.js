@@ -7,8 +7,9 @@ const CompleteChapters = ({ courseId, finished, total }) => {
   const courseCtx = useContext(CourseContext);
 
   useEffect(() => {
+    // Check if finished chapters equal to total chapters and this course is not in list of finished courses
+    // Then, save finished course ID on local storage, Else not saving
     if (finished === total && !courseCtx.finishedCourses[courseId]) {
-      console.log("finish "+ courseId)
       courseCtx.saveFinishedCourses(courseId);
     }
   }, [finished, total]);

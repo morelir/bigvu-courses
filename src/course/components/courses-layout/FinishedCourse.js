@@ -4,8 +4,6 @@ import "./FinishedCourse.css";
 
 const FinishedCourse = ({ courseId ,style}) => {
   const coursesCtx = useContext(CourseContext);
-  console.log(coursesCtx.finishedCourses)
-  console.log(courseId)
   const [finishedCourse] = useState(coursesCtx.finishedCourses[courseId] ?? false);
 
   if (finishedCourse) {

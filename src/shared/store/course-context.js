@@ -1,14 +1,14 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 
 const CourseContext = React.createContext({
   playingPosition: {},
   savePlayingTimePosition: (courseId, chapterId, timeLeft) => {},
   getChapterId: (courseId) => {},
   getTimestamp: (courseId, chapterId) => {},
-  coursesFinishedChapters:{},
+  coursesFinishedChapters: {},
   saveFinishedChapters: (courseId, chapterId) => {},
-  finishedCourses:{},
-  saveFinishedCourses:(courseId) => {},
+  finishedCourses: {},
+  saveFinishedCourses: (courseId) => {},
 });
 
 // const p = {
@@ -36,7 +36,6 @@ const CourseContext = React.createContext({
 //   124: false,
 // };
 
-
 const retrieveStoredPlayingPosition = () => {
   const playingData = localStorage.getItem("playingPosition");
   if (playingData) return JSON.parse(playingData);
@@ -44,14 +43,15 @@ const retrieveStoredPlayingPosition = () => {
 };
 
 const retrieveStoredCoursesFinishedChapters = () => {
-  const coursesFinishedChapters = localStorage.getItem("coursesFinishedChapters");
+  const coursesFinishedChapters = localStorage.getItem(
+    "coursesFinishedChapters"
+  );
   if (coursesFinishedChapters) return JSON.parse(coursesFinishedChapters);
   else return {};
 };
 
 const retrieveStoredFinishedCourses = () => {
   const finishedCourses = localStorage.getItem("finishedCourses");
-  console.log(finishedCourses)
   if (finishedCourses) return JSON.parse(finishedCourses);
   else return {};
 };
@@ -69,6 +69,9 @@ export const CourseContextProvider = (props) => {
     retrieveStoredFinishedCourses()
   );
 
+  // Function get 3 params: chapterId, chapterId, timeLeft
+  // Creating a new playing position object with new courseId key that inside it a chapterId key set to TIME LEFT of the chapter.
+  // Saving the new playing position object on the local storage.
   const savePlayingTimePosition = (courseId, chapterId, timeLeft) => {
     const newPlayingPosition = {
       ...playingPosition,
@@ -80,6 +83,9 @@ export const CourseContextProvider = (props) => {
     setPlayingPosition(newPlayingPosition);
   };
 
+  // Function get chapterId param
+  // IF there is in playingPosition object a course ID key, return course ID
+  // ELSE return false.
   const getChapterId = (courseId) => {
     if (playingPosition && playingPosition[courseId]) {
       return Object.keys(playingPosition[courseId])[0];
@@ -87,6 +93,9 @@ export const CourseContextProvider = (props) => {
     return false;
   };
 
+  // Function get 3 params: courseId, chapterId, duration
+  // IF there is in playingPosition object a chapter ID, return duration-playingPosition
+  // ELSE return false.
   const getTimestamp = (courseId, chapterId, duration) => {
     if (playingPosition[courseId]?.[chapterId] >= 0) {
       return duration - playingPosition[courseId][chapterId];
@@ -94,6 +103,9 @@ export const CourseContextProvider = (props) => {
     return false;
   };
 
+  // Function get 2 params: chapterId, chapterId
+  // Creating a new Courses finished chapters object with new courseId key that inside it a chapterId key set to TRUE.
+  // Saving the new Courses finished chapters object on the local storage.
   const saveFinishedChapters = (courseId, chapterId) => {
     const newCoursesFinishedChapters = {
       ...coursesFinishedChapters,
@@ -108,21 +120,18 @@ export const CourseContextProvider = (props) => {
     setCoursesFinishedChapters(newCoursesFinishedChapters);
   };
 
-  const saveFinishedCourses = (courseId)=>{
+  // Function get courseId param.
+  // Creating a new finished courses object with new courseId key set to TRUE.
+  // Saving the new Courses finished chapters object on the local storage.
+  const saveFinishedCourses = (courseId) => {
     const newFinishedCourses = {
       ...finishedCourses,
       [courseId]: true,
     };
     localStorage.removeItem("finishedCourses");
-    localStorage.setItem(
-      "finishedCourses",
-      JSON.stringify(newFinishedCourses)
-    );
+    localStorage.setItem("finishedCourses", JSON.stringify(newFinishedCourses));
     setFinishedCourses(newFinishedCourses);
-
-  }
-
-
+  };
 
   const contextValue = {
     playingPosition,

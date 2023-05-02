@@ -12,13 +12,12 @@ const CoursesLayout = () => {
 
   useEffect(() => {
     (async () => {
-      try{
-      const result = await api.getCourseList();
-      console.log(result.result)
-      setCourses(result.result);
-      setIsLoading(false);
-      }catch(err){
-        console.log(err)
+      try {
+        const result = await api.getCourseList();
+        setCourses(result.result);
+        setIsLoading(false);
+      } catch (err) {
+        console.log(err);
       }
     })();
   }, []);
@@ -36,7 +35,8 @@ const CoursesLayout = () => {
       <h1 className="coursesLayout-heading">BIGVU 101 Crash Course</h1>
       <div>
         <p className="coursesLayout-description">
-          Zero editing experience to pro — your journey starts here.<br/>                        
+          Zero editing experience to pro — your journey starts here.
+          <br />
           Watch step-by-step video lessons how to make videos with impact.
         </p>
       </div>
