@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 
 const CourseContext = React.createContext({
+  courses: [],
   playingPosition: {},
   savePlayingTimePosition: (courseId, chapterId, timeLeft) => {},
   getChapterId: (courseId) => {},
@@ -68,6 +69,12 @@ export const CourseContextProvider = (props) => {
   const [finishedCourses, setFinishedCourses] = useState(
     retrieveStoredFinishedCourses()
   );
+
+  const [courses,setCourses] = useState([]);
+
+  const saveCourse = (course) => {
+    setCourses((prev)=> [...prev,course])
+  };
 
   // Function get 3 params: chapterId, chapterId, timeLeft
   // Creating a new playing position object with new courseId key that inside it a chapterId key set to TIME LEFT of the chapter.
@@ -142,6 +149,8 @@ export const CourseContextProvider = (props) => {
     saveFinishedChapters,
     finishedCourses,
     saveFinishedCourses,
+    courses,
+    saveCourse,
   };
 
   return (

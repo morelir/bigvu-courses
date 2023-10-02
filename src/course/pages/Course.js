@@ -18,12 +18,21 @@ const Course = () => {
   const [finishedChapters, setFinishedChapters] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
-  const { getChapterId, getTimestamp, coursesFinishedChapters } = courseCtx;
+  const { getChapterId, getTimestamp, coursesFinishedChapters, courses } =
+    courseCtx;
 
   useEffect(() => {
     (async () => {
       setIsLoading(true);
-      const result = await api.getCourse(courseId);
+      let result
+      if (courses.length === 0) {
+        result = await api.getCourse(courseId);
+      }else{
+        [result] = courses.filter((course) => course.id === courseId);
+      }
+
+     
+
       setCourse(result);
       let chapter;
       // Check if there is a chapter ID on localstorage that need to playing from,
@@ -39,6 +48,7 @@ const Course = () => {
       } else {
         chapter = result.chapters[0];
       }
+
       setChapter(chapter);
       setIsLoading(false);
     })();
@@ -62,8 +72,7 @@ const Course = () => {
     courseCtx.savePlayingTimePosition(courseId, chapterId, timeLeft);
   };
 
-  
-  // Event for saving finished chapter on local storage if the user finished that chapter. 
+  // Event for saving finished chapter on local storage if the user finished that chapter.
   const saveFinishedChapters = (chapterId) => {
     courseCtx.saveFinishedChapters(courseId, chapterId);
   };
