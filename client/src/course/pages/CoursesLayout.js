@@ -29,6 +29,7 @@ const CoursesLayout = () => {
       </div>
     );
   }
+  
 
   return (
     <section className="coursesLayout-section">
