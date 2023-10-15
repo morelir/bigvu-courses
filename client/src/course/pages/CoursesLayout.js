@@ -14,7 +14,7 @@ const CoursesLayout = () => {
     (async () => {
       try {
         const result = await api.getCourseList();
-        setCourses(result.result);
+        setCourses(result.data.courses);
         setIsLoading(false);
       } catch (err) {
         console.log(err);

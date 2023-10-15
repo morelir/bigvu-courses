@@ -10,19 +10,17 @@ const api = createApiClient();
 const CourseTotalVideos = ({ id }) => {
   const [totalVideos, setTotalVideos] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  const { saveCourse,courses } = useContext(CourseContext);
+  const { saveCourse, courses } = useContext(CourseContext);
 
   useEffect(() => {
     (async () => {
       let result;
-      // if (courses.length === 0) {
-        result = await api.getCourse(id);
-        result.id = id; //there is course object id that not match to his course list id, so this fixed it.
-        saveCourse(result);
-      // } else {
-      //   [result] = courses.filter((course) => course.id === id);
-      // }
-      setTotalVideos(result.chapters.length);
+      result = await api.getCourse(id);
+      const course = result.data.courses;
+      console.log(course);
+      course.id = id; //there is course object id that not match to his course list id, so this fixed it.
+      saveCourse(course);
+      setTotalVideos(course.chapters.length);
       setIsLoading(false);
     })();
   }, []);

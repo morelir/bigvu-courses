@@ -11,12 +11,12 @@ exports.getCourseList = async (req, res) => {
       "https://interviews.bigvu.tv/course/list",
       { auth }
     );
-    console.log(response.data);
-
+    console.log(response.data.result)
+    
     res.status(200).json({
       status: "success",
       data: {
-        courses: response.data,
+        courses: response.data.result,
       },
     });
   } catch (error) {
@@ -32,7 +32,6 @@ exports.getCourse = async (req, res) => {
       `https://interviews.bigvu.tv/course/${req.params.id}`,
       { auth }
     );
-    console.log(response.data);
 
     res.status(200).json({
       status: "success",
